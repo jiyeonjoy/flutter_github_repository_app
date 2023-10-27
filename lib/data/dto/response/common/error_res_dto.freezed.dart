@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'error_res_dto.dart';
 
@@ -69,7 +69,7 @@ class _$ErrorResDtoCopyWithImpl<$Res, $Val extends ErrorResDto>
     Object? errorMessage = null,
     Object? errorDetail = null,
     Object? errorTitle = null,
-    Object? data = null,
+    Object? data = freezed,
     Object? isHandledAlready = null,
   }) {
     return _then(_value.copyWith(
@@ -93,7 +93,7 @@ class _$ErrorResDtoCopyWithImpl<$Res, $Val extends ErrorResDto>
           ? _value.errorTitle
           : errorTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -106,11 +106,11 @@ class _$ErrorResDtoCopyWithImpl<$Res, $Val extends ErrorResDto>
 }
 
 /// @nodoc
-abstract class _$$_ErrorResDtoCopyWith<$Res>
+abstract class _$$ErrorResDtoImplCopyWith<$Res>
     implements $ErrorResDtoCopyWith<$Res> {
-  factory _$$_ErrorResDtoCopyWith(
-          _$_ErrorResDto value, $Res Function(_$_ErrorResDto) then) =
-      __$$_ErrorResDtoCopyWithImpl<$Res>;
+  factory _$$ErrorResDtoImplCopyWith(
+          _$ErrorResDtoImpl value, $Res Function(_$ErrorResDtoImpl) then) =
+      __$$ErrorResDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -124,11 +124,11 @@ abstract class _$$_ErrorResDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ErrorResDtoCopyWithImpl<$Res>
-    extends _$ErrorResDtoCopyWithImpl<$Res, _$_ErrorResDto>
-    implements _$$_ErrorResDtoCopyWith<$Res> {
-  __$$_ErrorResDtoCopyWithImpl(
-      _$_ErrorResDto _value, $Res Function(_$_ErrorResDto) _then)
+class __$$ErrorResDtoImplCopyWithImpl<$Res>
+    extends _$ErrorResDtoCopyWithImpl<$Res, _$ErrorResDtoImpl>
+    implements _$$ErrorResDtoImplCopyWith<$Res> {
+  __$$ErrorResDtoImplCopyWithImpl(
+      _$ErrorResDtoImpl _value, $Res Function(_$ErrorResDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -139,10 +139,10 @@ class __$$_ErrorResDtoCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? errorDetail = null,
     Object? errorTitle = null,
-    Object? data = null,
+    Object? data = freezed,
     Object? isHandledAlready = null,
   }) {
-    return _then(_$_ErrorResDto(
+    return _then(_$ErrorResDtoImpl(
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class __$$_ErrorResDtoCopyWithImpl<$Res>
           ? _value.errorTitle
           : errorTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -177,8 +177,8 @@ class __$$_ErrorResDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ErrorResDto implements _ErrorResDto {
-  _$_ErrorResDto(
+class _$ErrorResDtoImpl implements _ErrorResDto {
+  _$ErrorResDtoImpl(
       {this.code = -1,
       this.status = -1,
       this.errorMessage = '',
@@ -187,8 +187,8 @@ class _$_ErrorResDto implements _ErrorResDto {
       this.data,
       this.isHandledAlready = false});
 
-  factory _$_ErrorResDto.fromJson(Map<String, dynamic> json) =>
-      _$$_ErrorResDtoFromJson(json);
+  factory _$ErrorResDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ErrorResDtoImplFromJson(json);
 
   @override
   @JsonKey()
@@ -222,7 +222,7 @@ class _$_ErrorResDto implements _ErrorResDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ErrorResDto &&
+            other is _$ErrorResDtoImpl &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
@@ -251,12 +251,12 @@ class _$_ErrorResDto implements _ErrorResDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ErrorResDtoCopyWith<_$_ErrorResDto> get copyWith =>
-      __$$_ErrorResDtoCopyWithImpl<_$_ErrorResDto>(this, _$identity);
+  _$$ErrorResDtoImplCopyWith<_$ErrorResDtoImpl> get copyWith =>
+      __$$ErrorResDtoImplCopyWithImpl<_$ErrorResDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ErrorResDtoToJson(
+    return _$$ErrorResDtoImplToJson(
       this,
     );
   }
@@ -270,10 +270,10 @@ abstract class _ErrorResDto implements ErrorResDto {
       final String errorDetail,
       final String errorTitle,
       final dynamic data,
-      final bool isHandledAlready}) = _$_ErrorResDto;
+      final bool isHandledAlready}) = _$ErrorResDtoImpl;
 
   factory _ErrorResDto.fromJson(Map<String, dynamic> json) =
-      _$_ErrorResDto.fromJson;
+      _$ErrorResDtoImpl.fromJson;
 
   @override
   int get code;
@@ -291,6 +291,6 @@ abstract class _ErrorResDto implements ErrorResDto {
   bool get isHandledAlready;
   @override
   @JsonKey(ignore: true)
-  _$$_ErrorResDtoCopyWith<_$_ErrorResDto> get copyWith =>
+  _$$ErrorResDtoImplCopyWith<_$ErrorResDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

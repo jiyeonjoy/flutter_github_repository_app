@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_github_repository_app/app/common/constants.dart';
+import 'package:flutter_github_repository_app/data/data_sources/remote/apis/search_repos_api.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final prettyDioLogger = PrettyDioLogger(
@@ -34,4 +35,9 @@ class GRHttpClient {
 
     return _dio!;
   }
+
+  SearchReposApi get searchReposApi => SearchReposApi(
+    dio,
+    baseUrl: AppConstants.DOMAIN_URL,
+  );
 }

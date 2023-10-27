@@ -6,8 +6,8 @@ part of 'error_res_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ErrorResDto _$$_ErrorResDtoFromJson(Map<String, dynamic> json) =>
-    _$_ErrorResDto(
+_$ErrorResDtoImpl _$$ErrorResDtoImplFromJson(Map<String, dynamic> json) =>
+    _$ErrorResDtoImpl(
       code: json['code'] as int? ?? -1,
       status: json['status'] as int? ?? -1,
       errorMessage: json['errorMessage'] as String? ?? '',
@@ -17,7 +17,7 @@ _$_ErrorResDto _$$_ErrorResDtoFromJson(Map<String, dynamic> json) =>
       isHandledAlready: json['isHandledAlready'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_ErrorResDtoToJson(_$_ErrorResDto instance) =>
+Map<String, dynamic> _$$ErrorResDtoImplToJson(_$ErrorResDtoImpl instance) =>
     <String, dynamic>{
       'code': instance.code,
       'status': instance.status,
