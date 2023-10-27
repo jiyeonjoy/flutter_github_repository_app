@@ -1,10 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_github_repository_app/app/common/constants.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-class CommunityHttpClient {
-  static final CommunityHttpClient _instance = CommunityHttpClient._internal();
-  factory CommunityHttpClient() => _instance;
-  CommunityHttpClient._internal();
+final prettyDioLogger = PrettyDioLogger(
+  requestHeader: true,
+  requestBody: true,
+  responseBody: true,
+  responseHeader: false,
+  error: true,
+  compact: true,
+  maxWidth: 90,
+);
+
+class GRHttpClient {
+  static final GRHttpClient _instance = GRHttpClient._internal();
+  factory GRHttpClient() => _instance;
+  GRHttpClient._internal();
 
   BaseOptions options = BaseOptions(
     connectTimeout: const Duration(seconds: AppConstants.HTTP_CONNECT_TIMEOUT),
@@ -17,7 +28,9 @@ class CommunityHttpClient {
 
   Dio? _dio;
   Dio get dio {
-    _dio ??= Dio(options);
+    _dio ??= Dio(options)..interceptors.addAll([
+      prettyDioLogger,
+    ]);
 
     return _dio!;
   }
