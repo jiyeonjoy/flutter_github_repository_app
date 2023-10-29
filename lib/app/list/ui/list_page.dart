@@ -43,7 +43,14 @@ class ListPage extends GetView<ListPageController> {
                       child: ListView.builder(
                         itemBuilder: (_, index) {
                           return GitHubRepositoryItemView(
-                              repositoryList[index]);
+                            repositoryList[index],
+                            IconButton(
+                              icon: const Icon(
+                                Icons.save_alt,
+                              ),
+                              onPressed: () {},
+                            ),
+                          );
                         },
                         itemCount: repositoryList.length,
                       ),
