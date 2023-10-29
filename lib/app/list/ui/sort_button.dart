@@ -12,7 +12,7 @@ class SortButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {
+        onPressed: isSelected ? null : () {
           ListPageController.to.setSortType(sortType);
         },
         child: Text(

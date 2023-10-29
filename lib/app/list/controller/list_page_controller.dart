@@ -26,7 +26,8 @@ class ListPageController extends GetxController {
     if (!isNetworkConnected) {
       setListPageError(ListPageErrorType.networkError);
     } else {
-      final repos = await searchReposApiUseCase.getRepositories('language:dart');
+      final repos = await searchReposApiUseCase.getRepositories('language:dart',
+          sort: sortType.value.key);
       repos.when(success: (resp) {
         if (resp.items.isEmpty) {
           setListPageError(ListPageErrorType.emptyError);
@@ -47,6 +48,7 @@ class ListPageController extends GetxController {
 
   void setSortType(RepositoryListSortType type) {
     sortType.value = type;
+    loadRepositories();
   }
 }
 
@@ -57,10 +59,11 @@ enum ListPageErrorType {
 }
 
 enum RepositoryListSortType {
-  bestMatch('Best Match'),
-  mostStars('Most Stars'),
-  recentlyUpdated('Recently Updated');
+  bestMatch('Best Match', ''),
+  mostStars('Most Stars', 'stars'),
+  recentlyUpdated('Recently Updated', 'updated');
 
   final String text;
-  const RepositoryListSortType(this.text);
+  final String key;
+  const RepositoryListSortType(this.text, this.key);
 }
