@@ -13,7 +13,7 @@ class RootPageController extends GetxController {
     super.onInit();
     bool isNetworkConnected = Get.arguments?[AppConstants.IS_NETWORK_CONNECTED] ?? false;
     if (!isNetworkConnected) {
-      changeTab(RootTab.favorites.id);
+      changeTab(RootTab.savedList.id);
     }
   }
 
@@ -25,7 +25,7 @@ class RootPageController extends GetxController {
 
 enum RootTab {
   list(0),
-  favorites(1);
+  savedList(1);
 
   final int id;
   const RootTab(this.id);
@@ -49,9 +49,9 @@ extension RootTabExt on RootTab {
           color: R.color.black.withOpacity(0.5),
           size: 24.0,
         );
-      case RootTab.favorites:
+      case RootTab.savedList:
         return Icon(
-          Icons.star_border,
+          Icons.save_outlined,
           color: R.color.black.withOpacity(0.5),
           size: 24.0,
         );
@@ -66,9 +66,9 @@ extension RootTabExt on RootTab {
           color: R.color.black,
           size: 24.0,
         );
-      case RootTab.favorites:
+      case RootTab.savedList:
         return Icon(
-          Icons.star,
+          Icons.save,
           color: R.color.black,
           size: 24.0,
         );
@@ -79,8 +79,8 @@ extension RootTabExt on RootTab {
     switch (this) {
       case RootTab.list:
         return R.string.list;
-      case RootTab.favorites:
-        return R.string.favorites;
+      case RootTab.savedList:
+        return R.string.savedList;
     }
   }
 }

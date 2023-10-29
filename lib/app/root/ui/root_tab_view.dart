@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_github_repository_app/app/favorites/ui/favorites_page.dart';
 import 'package:flutter_github_repository_app/app/list/ui/list_page.dart';
 import 'package:flutter_github_repository_app/app/root/controller/root_page_controller.dart';
+import 'package:flutter_github_repository_app/app/saved/ui/saved_page.dart';
 
 class RootTabView extends StatelessWidget {
   final RootTab rootTab;
@@ -12,8 +12,8 @@ class RootTabView extends StatelessWidget {
     switch(rootTab) {
       case RootTab.list:
         return const ListPage();
-      case RootTab.favorites:
-        return const FavoritesPage();
+      case RootTab.savedList:
+        return const SavedPage();
     }
   }
 }

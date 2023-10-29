@@ -1,9 +1,9 @@
 import 'package:flutter_github_repository_app/app/detail/binding/detail_page_binding.dart';
 import 'package:flutter_github_repository_app/app/detail/ui/detail_page.dart';
-import 'package:flutter_github_repository_app/app/favorites/binding/favorite_page_binding.dart';
 import 'package:flutter_github_repository_app/app/list/binding/list_page_binding.dart';
 import 'package:flutter_github_repository_app/app/root/binding/root_page_binding.dart';
 import 'package:flutter_github_repository_app/app/root/ui/root_page.dart';
+import 'package:flutter_github_repository_app/app/saved/binding/saved_page_binding.dart';
 import 'package:flutter_github_repository_app/app/splash/binding/splash_page_binding.dart';
 import 'package:flutter_github_repository_app/app/splash/ui/splash_page.dart';
 import 'package:flutter_github_repository_app/app/webview/binding/webview_page_binding.dart';
@@ -28,7 +28,7 @@ abstract class AppPages {
       bindings: [
         RootPageBinding(),
         ListPageBinding(),
-        FavoritesPageBinding(),
+        SavedPageBinding(),
       ],
       transition: Transition.fadeIn,
     ),
