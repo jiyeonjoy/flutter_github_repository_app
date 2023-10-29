@@ -11,6 +11,9 @@ class AppImages {
 
   static const String _imagePath = 'assets/images/';
   static const String _iconPath = '${_imagePath}icons/';
+
+  AppImage get icon_close =>
+      const AppImage('${_iconPath}icon_close.svg');
 }
 
 class AppImage {
