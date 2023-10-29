@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'search_repos_item_dto.freezed.dart';
 part 'search_repos_item_dto.g.dart';
 
+// ignore_for_file: non_constant_identifier_names
 @freezed
 class SearchReposItemDto with _$SearchReposItemDto {
   const SearchReposItemDto._();
