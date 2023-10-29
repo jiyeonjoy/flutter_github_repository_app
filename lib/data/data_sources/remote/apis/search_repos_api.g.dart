@@ -23,12 +23,16 @@ class _SearchReposApi implements SearchReposApi {
     String q, {
     String? sort,
     String? order,
+    int? perPage,
+    int? page,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'q': q,
       r'sort': sort,
       r'order': order,
+      r'per_page': perPage,
+      r'page': page,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

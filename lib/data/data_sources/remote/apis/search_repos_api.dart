@@ -10,8 +10,10 @@ abstract class SearchReposApi {
 
   @GET('/search/repositories')
   Future<SearchReposDto> getRepositories(
-      @Query('q') String q,
-      {@Query('sort') String? sort,
-       @Query('order') String? order,
-      });
+    @Query('q') String q, {
+    @Query('sort') String? sort,
+    @Query('order') String? order,
+    @Query('per_page') int? perPage,
+    @Query('page') int? page,
+  });
 }

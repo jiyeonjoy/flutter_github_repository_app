@@ -3,5 +3,5 @@ import 'package:flutter_github_repository_app/data/dto/response/search_repos/sea
 
 abstract class SearchReposApiRepository {
   Future<ApiResult<SearchReposDto>> getRepositories(String q,
-      {String? sort, String? order});
+      {String? sort, String? order, int? perPage, int? page});
 }
