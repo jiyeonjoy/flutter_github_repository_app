@@ -13,6 +13,7 @@ class ListPageController extends GetxController {
 
   ListPageErrorType listPageErrorType = ListPageErrorType.noError;
   var repositoryList = <SearchReposItemDto>[].obs;
+  Rx<RepositoryListSortType> sortType = RepositoryListSortType.bestMatch.obs;
 
   @override
   void onInit() async {
@@ -43,10 +44,23 @@ class ListPageController extends GetxController {
     listPageErrorType = errorType;
     update();
   }
+
+  void setSortType(RepositoryListSortType type) {
+    sortType.value = type;
+  }
 }
 
 enum ListPageErrorType {
   noError,
   emptyError,
   networkError,
+}
+
+enum RepositoryListSortType {
+  bestMatch('Best Match'),
+  mostStars('Most Stars'),
+  recentlyUpdated('Recently Updated');
+
+  final String text;
+  const RepositoryListSortType(this.text);
 }

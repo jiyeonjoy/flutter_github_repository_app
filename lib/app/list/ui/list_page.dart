@@ -4,6 +4,7 @@ import 'package:flutter_github_repository_app/app/common/ui/github_repository_it
 import 'package:flutter_github_repository_app/app/list/controller/list_page_controller.dart';
 import 'package:flutter_github_repository_app/app/list/ui/empty_error_view.dart';
 import 'package:flutter_github_repository_app/app/list/ui/network_error_view.dart';
+import 'package:flutter_github_repository_app/app/list/ui/sort_button.dart';
 import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_item_dto.dart';
 import 'package:get/get.dart';
 
@@ -35,25 +36,49 @@ class ListPage extends GetView<ListPageController> {
                       ),
                     );
                   } else {
-                    return RefreshIndicator(
-                      onRefresh: () async {
-                        await Future.delayed(const Duration(milliseconds: 500));
-                        _.loadRepositories();
-                      },
-                      child: ListView.builder(
-                        itemBuilder: (_, index) {
-                          return GitHubRepositoryItemView(
-                            repositoryList[index],
-                            IconButton(
-                              icon: const Icon(
-                                Icons.save_alt,
-                              ),
-                              onPressed: () {},
+                    return Column(
+                      children: [
+                        Obx(() {
+                          RepositoryListSortType sortType = _.sortType.value;
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                const SizedBox(width: 24),
+                                SortButton(RepositoryListSortType.bestMatch,
+                                    RepositoryListSortType.bestMatch == sortType),
+                                SortButton(RepositoryListSortType.mostStars,
+                                    RepositoryListSortType.mostStars == sortType),
+                                SortButton(RepositoryListSortType.recentlyUpdated,
+                                    RepositoryListSortType.recentlyUpdated == sortType),
+                              ],
                             ),
                           );
-                        },
-                        itemCount: repositoryList.length,
-                      ),
+                        }),
+                        Expanded(
+                          child: RefreshIndicator(
+                            onRefresh: () async {
+                              await Future.delayed(
+                                  const Duration(milliseconds: 500));
+                              _.loadRepositories();
+                            },
+                            child: ListView.builder(
+                              itemBuilder: (_, index) {
+                                return GitHubRepositoryItemView(
+                                  repositoryList[index],
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.save_alt,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                );
+                              },
+                              itemCount: repositoryList.length,
+                            ),
+                          ),
+                        ),
+                      ],
                     );
                   }
                 });

@@ -17,7 +17,7 @@ class SavedPage extends GetView<SavedPageController> {
         child: Obx(() {
           List<SearchReposItemDto> savedList = controller.savedList;
           if (savedList.isEmpty) {
-            return EmptyView();
+            return const EmptyView();
           } else {
             return ListView.builder(
               itemBuilder: (_, index) {
