@@ -8,7 +8,7 @@ class ListPage extends GetView<ListPageController> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.orange,
       body: Center(
         child: Text(
           'List Page',

@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_github_repository_app/app/common/config/r.dart';
+import 'package:flutter_github_repository_app/app/common/constants.dart';
 import 'package:get/get.dart';
 
 class RootPageController extends GetxController {
   static RootPageController get to => Get.find();
 
   RootTab currentTab = RootTab.list;
+
+  @override
+  void onInit() {
+    super.onInit();
+    bool isNetworkConnected = Get.arguments?[AppConstants.IS_NETWORK_CONNECTED] ?? false;
+    if (!isNetworkConnected) {
+      changeTab(RootTab.favorites.id);
+    }
+  }
 
   void changeTab(int index) {
     currentTab = RootTab.from(index);
