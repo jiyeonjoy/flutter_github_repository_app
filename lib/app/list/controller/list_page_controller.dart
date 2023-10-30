@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_github_repository_app/app/common/logger.dart';
+import 'package:flutter_github_repository_app/app/common/ui/common_snackbar.dart';
 import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_dto.dart';
 import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_item_dto.dart';
 import 'package:flutter_github_repository_app/data/repositories/search_repos_api_repo_impl.dart';
@@ -81,6 +82,7 @@ class ListPageController extends GetxController {
       loadMoreFlag = (resp.items.length == perPage) && (page <= maxPage);
     }, failure: (error) {
       logger.d(error);
+      CommonSnackBar.show(error.toString());
       setListPageError(ListPageErrorType.networkError);
     });
     refreshing = false;
