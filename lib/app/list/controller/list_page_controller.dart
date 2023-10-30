@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_github_repository_app/app/common/logger.dart';
 import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_dto.dart';
 import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_item_dto.dart';
@@ -20,11 +21,18 @@ class ListPageController extends GetxController {
   int page = 1;
   final int perPage = 20;
   final int maxPage = 5;
+  ScrollController scrollController = ScrollController();
 
   @override
   void onInit() async {
     super.onInit();
     loadRepositories();
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
   }
 
   void loadRepositories() async {
@@ -39,6 +47,13 @@ class ListPageController extends GetxController {
         setListPageError(ListPageErrorType.noError);
       }
       repositoryList.value = resp.items;
+      if (scrollController.hasClients) {
+        scrollController.animateTo(
+          0,
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.easeInOut,
+        );
+      }
     });
   }
 

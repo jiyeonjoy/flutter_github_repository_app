@@ -63,6 +63,7 @@ class ListPage extends GetView<ListPageController> {
                               _.loadRepositories();
                             },
                             child: ListView.builder(
+                              controller: controller.scrollController,
                               itemBuilder: (_, index) {
                                 if (index == repositoryList.length-1) {
                                   controller.loadMoreRepositories();
