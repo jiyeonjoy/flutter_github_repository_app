@@ -68,16 +68,12 @@ class ListPage extends GetView<ListPageController> {
                                 if (index == repositoryList.length-1) {
                                   controller.loadMoreRepositories();
                                 }
-
                                 return GitHubRepositoryItemView(
-                                  repositoryList[index],
-                                  IconButton(
-                                    icon: const Icon(
+                                    repositoryList[index],
+                                    const Icon(
                                       Icons.save_alt,
                                     ),
-                                    onPressed: () {},
-                                  ),
-                                );
+                                    () {});
                               },
                               itemCount: repositoryList.length,
                             ),

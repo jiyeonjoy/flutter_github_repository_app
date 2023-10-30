@@ -23,13 +23,10 @@ class SavedPage extends GetView<SavedPageController> {
               itemBuilder: (_, index) {
                 return GitHubRepositoryItemView(
                   savedList[index],
-                  IconButton(
-                    icon: Icon(
-                      Icons.delete,
-                      color: R.color.color_F91E30,
-                    ),
-                    onPressed: () {},
-                  ),
+                  Icon(
+                    Icons.delete,
+                    color: R.color.color_F91E30,
+                  ), () {},
                 );
               },
               itemCount: savedList.length,

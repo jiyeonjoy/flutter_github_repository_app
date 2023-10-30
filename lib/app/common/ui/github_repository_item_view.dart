@@ -7,8 +7,9 @@ import 'package:flutter_github_repository_app/data/dto/response/search_repos/sea
 class GitHubRepositoryItemView extends StatelessWidget {
   final SearchReposItemDto reposItemDto;
   final Widget rightButton;
+  final GestureTapCallback? onTap;
 
-  const GitHubRepositoryItemView(this.reposItemDto, this.rightButton,
+  const GitHubRepositoryItemView(this.reposItemDto, this.rightButton, this.onTap,
       {Key? key})
       : super(key: key);
 
@@ -17,7 +18,7 @@ class GitHubRepositoryItemView extends StatelessWidget {
     return Container(
       margin: edgeInsets(horizontal: 24, vertical: 12),
       child: GestureDetector(
-        onTap: () {},
+        onTap: onTap,
         child: Container(
           width: double.infinity,
           padding: edgeInsets(all: 12),
