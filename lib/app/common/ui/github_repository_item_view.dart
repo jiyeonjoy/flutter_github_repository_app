@@ -35,11 +35,14 @@ class GitHubRepositoryItemView extends StatelessWidget {
                       children: [
                         Hero(
                           tag: reposItemDto.html_url,
-                          child: CachedNetworkImage(
-                            imageUrl: reposItemDto.owner?.avatar_url ?? '',
-                            width: 100,
-                            height: 100,
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: CachedNetworkImage(
+                              imageUrl: reposItemDto.owner?.avatar_url ?? '',
+                              width: 100,
+                              height: 100,
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 16),
