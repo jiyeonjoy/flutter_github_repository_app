@@ -1,8 +1,8 @@
 import 'package:flutter_github_repository_app/app/common/logger.dart';
+import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_dto.dart';
 import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_item_dto.dart';
 import 'package:flutter_github_repository_app/data/repositories/search_repos_api_repo_impl.dart';
 import 'package:flutter_github_repository_app/domain/use_cases/search_repos_api_usecase.dart';
-import 'package:flutter_github_repository_app/utils/helper/network_connected_helper.dart';
 import 'package:get/get.dart';
 
 class ListPageController extends GetxController {
@@ -15,6 +15,12 @@ class ListPageController extends GetxController {
   var repositoryList = <SearchReposItemDto>[].obs;
   Rx<RepositoryListSortType> sortType = RepositoryListSortType.bestMatch.obs;
 
+  bool refreshing = false;
+  bool loadMoreFlag = false;
+  int page = 1;
+  final int perPage = 20;
+  final int maxPage = 5;
+
   @override
   void onInit() async {
     super.onInit();
@@ -22,23 +28,47 @@ class ListPageController extends GetxController {
   }
 
   void loadRepositories() async {
-    bool isNetworkConnected = await NetworkConnectedHelper.isNetworkAvailable();
-    if (!isNetworkConnected) {
-      setListPageError(ListPageErrorType.networkError);
-    } else {
-      final repos = await searchReposApiUseCase.getRepositories('language:dart',
-          sort: sortType.value.key);
-      repos.when(success: (resp) {
-        if (resp.items.isEmpty) {
-          setListPageError(ListPageErrorType.emptyError);
-        } else {
-          setListPageError(ListPageErrorType.noError);
-        }
-        repositoryList.value = resp.items;
-      }, failure: (error) {
-        logger.d(error);
-      });
+    if (refreshing) {
+      return;
     }
+    page = 1;
+    _getRepositories((resp) {
+      if (resp.items.isEmpty) {
+        setListPageError(ListPageErrorType.emptyError);
+      } else {
+        setListPageError(ListPageErrorType.noError);
+      }
+      repositoryList.value = resp.items;
+    });
+  }
+
+  void loadMoreRepositories() async {
+    if (refreshing || !loadMoreFlag) {
+      return;
+    }
+    _getRepositories((resp) {
+      final List<SearchReposItemDto> list = List<SearchReposItemDto>.from(repositoryList);
+      list.addAll(resp.items);
+      repositoryList.value = list;
+    });
+  }
+
+  void _getRepositories(Function(SearchReposDto resp) onSuccess) async {
+    refreshing = true;
+    final repos = await searchReposApiUseCase.getRepositories(
+      'language:dart',
+      sort: sortType.value.key,
+      page: page++,
+      perPage: perPage,
+    );
+    repos.when(success: (resp) {
+      onSuccess(resp);
+      loadMoreFlag = (resp.items.length == perPage) && (page <= maxPage);
+    }, failure: (error) {
+      logger.d(error);
+      setListPageError(ListPageErrorType.networkError);
+    });
+    refreshing = false;
   }
 
   void setListPageError(ListPageErrorType errorType) {

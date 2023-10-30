@@ -64,6 +64,10 @@ class ListPage extends GetView<ListPageController> {
                             },
                             child: ListView.builder(
                               itemBuilder: (_, index) {
+                                if (index == repositoryList.length-1) {
+                                  controller.loadMoreRepositories();
+                                }
+
                                 return GitHubRepositoryItemView(
                                   repositoryList[index],
                                   IconButton(
