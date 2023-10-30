@@ -20,8 +20,8 @@ class ListPageController extends GetxController {
   bool refreshing = false;
   bool loadMoreFlag = false;
   int page = 1;
-  final int perPage = 20;
-  final int maxPage = 5;
+  final int perPage = 50;
+  final int maxPage = 2;
   ScrollController scrollController = ScrollController();
 
   @override
