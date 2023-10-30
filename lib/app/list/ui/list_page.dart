@@ -64,6 +64,7 @@ class ListPage extends GetView<ListPageController> {
                             },
                             child: ListView.builder(
                               controller: controller.scrollController,
+                              physics: const AlwaysScrollableScrollPhysics(),
                               itemBuilder: (_, index) {
                                 if (index == repositoryList.length - 1) {
                                   controller.loadMoreRepositories();

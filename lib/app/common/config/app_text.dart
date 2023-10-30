@@ -14,4 +14,5 @@ class AppTexts {
   final String noSavedMessage = '저장된 리스트가 없습니다.';
   final String repositorySaveMessage = '저장 되었습니다.';
   final String repositoryDeletePopupText = '삭제하시겠습니까?';
+  final String retryButton = '다시 불러오기';
 }
