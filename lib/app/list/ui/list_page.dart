@@ -65,15 +65,17 @@ class ListPage extends GetView<ListPageController> {
                             child: ListView.builder(
                               controller: controller.scrollController,
                               itemBuilder: (_, index) {
-                                if (index == repositoryList.length-1) {
+                                if (index == repositoryList.length - 1) {
                                   controller.loadMoreRepositories();
                                 }
                                 return GitHubRepositoryItemView(
                                     repositoryList[index],
                                     const Icon(
                                       Icons.save_alt,
-                                    ),
-                                    () {});
+                                    ), () {
+                                  controller.saveRepositoryItem(
+                                      repositoryList[index]);
+                                });
                               },
                               itemCount: repositoryList.length,
                             ),

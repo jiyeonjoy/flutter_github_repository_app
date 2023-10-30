@@ -12,4 +12,6 @@ class AppTexts {
   final String networkErrorMessage = '네트워크 연결을 확인해 주세요.';
   final String emptyErrorMessage = '리스트가 없습니다.';
   final String noSavedMessage = '저장된 리스트가 없습니다.';
+  final String repositorySaveMessage = '저장 되었습니다.';
+  final String repositoryDeletePopupText = '삭제하시겠습니까?';
 }

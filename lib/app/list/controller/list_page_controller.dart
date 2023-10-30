@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_repository_app/app/common/config/r.dart';
 import 'package:flutter_github_repository_app/app/common/logger.dart';
 import 'package:flutter_github_repository_app/app/common/ui/common_snackbar.dart';
+import 'package:flutter_github_repository_app/app/saved/controller/saved_page_controller.dart';
 import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_dto.dart';
 import 'package:flutter_github_repository_app/data/dto/response/search_repos/search_repos_item_dto.dart';
 import 'package:flutter_github_repository_app/data/repositories/search_repos_api_repo_impl.dart';
 import 'package:flutter_github_repository_app/domain/use_cases/search_repos_api_usecase.dart';
+import 'package:flutter_github_repository_app/utils/helper/db_helper.dart';
 import 'package:get/get.dart';
 
 class ListPageController extends GetxController {
@@ -96,6 +99,12 @@ class ListPageController extends GetxController {
   void setSortType(RepositoryListSortType type) {
     sortType.value = type;
     loadRepositories();
+  }
+
+  void saveRepositoryItem(SearchReposItemDto item) async {
+    await DBHelper().createData(item);
+    CommonSnackBar.show(R.string.repositorySaveMessage);
+    SavedPageController.to.getSavedRepositoryList();
   }
 }
 
